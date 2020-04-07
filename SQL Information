@@ -1,0 +1,9 @@
+#sql details
+sql_port=<my port>
+sql_user=<my user>
+sql_password=<my password>
+sql_db=<schema name>
+sql_endpoint=<my endpoint>
+------------------------------
+<project directory>/wz
+------------------------------
