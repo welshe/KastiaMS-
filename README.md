@@ -5,4 +5,5 @@ Kastia MapleStory Script Dump -
 ## For any issues just make a commitment.
 ## Full unpacked loader of kastia-ms
 ## DLL Injector built for kastia-ms [ very basic ]
+## Fully Functional packet editor - 
 ## - peachy#8120 discord
