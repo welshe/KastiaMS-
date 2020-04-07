@@ -1,0 +1,81 @@
+define(h1,01D1F7E8)//0F 84 ?? ?? ?? ?? 2B 9E ?? ?? ?? ?? 0F 88 ?? ?? ?? ?? A1 ?? ?? ?? ?? 85 C0
+define(h2,01D1F7F4)//js below
+define(h3,01D1F853)//0F 84 ?? ?? ?? ?? 8B 16 8B 42 ?? 8B CE FF D0 3D ?? ?? ?? ?? 74 ?? 3D ?? ?? ?? ?? 74 ?? 3D ?? ?? ?? ?? 74 ?? 3D ?? ?? ?? ?? 74 ?? 3D ?? ?? ?? ?? 75 ?? 8D 4C 24 ?? 51
+define(h4,01D1F973)//8B ?? ?? ?? ?? ?? 8B 44 24 ?? 6A ?? 6A ?? 6A ?? 6A ?? 8D 4C 24 ?? 51 (update disable)
+define(h5,01D1F9E5)//0F 87 ?? ?? ?? ?? 0F B6 ?? ?? ?? ?? ?? FF 24 ?? ?? ?? ?? ?? 84 DB 74 ?? 8B 8E ?? ?? ?? ?? 85 C9
+define(h6,01D1F9F2)//jmp dword ptr below h5
+define(h7,01D1FA28)//first je from h5, address of je jump to
+
+[Enable]
+alloc(skill_id_hook,128)
+label(skill_id_return)
+alloc(delay,4)
+define(skill_id, #%arg1) //Skill ID goes here
+
+
+/*
+12120011 (Blazing Extinction 4th job) Blaze Wizard Skill
+12100029 (Ignition) Blaze Wizard
+12121002 (Towering Inferno) Blaze Wizard
+25100010 (Fox Spirits 2nd job) Shade Skill
+61101100 (Impact Wave 2nd job) Kaiser
+25100002 (Ground Pound (shockwave) 2nd job) Shade Skill
+25110003 (Shockwave Punch (shockwave) 3rd job) Shade Skill
+35121052 (Distortion Bomb, mechanic) turn down delay
+142120030 (kinesis Mental Tempest Hyper Skill)
+4321006 (Flying Assaulter - jump to activate) Dual Blade
+4331000 (Bloody Storm) Dual Blade
+4331006 (Chains of Hell) Dual Blade
+24111006 (Rapier Wit Dash & Damage) phantom
+36110005 (Triangulation, works with FMA) Xenon
+112001006 (Majestic Trumpet, works with FMA) Beast Tamer
+31201010 (Demon Strike, auto-exceed)
+101000101 (Air Riot) Zero: Beta
+101000201 (Shadow Strike) Zero: Alpha
+101001100 (Shadow Strike) Zero - both
+#37110006
+#37120022
+#12121055 dragon blaze
+*/
+
+delay:
+dw 0
+h1:
+db 90 90 90 90 90 90
+h2:
+db 90 90 90 90 90 90
+h3:
+db 90 E9
+h4:
+jmp skill_id_hook
+nop
+skill_id_return:
+
+skill_id_hook:
+inc [delay]
+cmp dword ptr [delay], #%arg2 // Set your delay (optional till you don't d/c)
+jne skill_id_return
+mov [delay], 0
+mov edx,skill_id
+jmp skill_id_return
+h5:
+db 90 90 90 90 90 90
+h6: //address at jmp dword ptr following the address above
+jmp h7
+dw 9090
+
+[Disable]
+h1:
+db 0F 84 86 03 00 00
+h2:
+db 0F 88 9B 03 00 00
+h3:
+db 0F 84 CC 00 00 00
+h4:
+mov edx,[esi+0001231C]
+h5:
+db 0F 87 7F 01 00 00
+h6:
+jmp dword ptr [ecx*4+01D1FB7C]
+
+dealloc(skill_id_hook)
