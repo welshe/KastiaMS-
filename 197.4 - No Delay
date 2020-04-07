@@ -1,0 +1,12 @@
+[enable]
+aobscan(MachNoDelay,75 2E 83 BD ? ? ? ? ? 75 25 8B 4D ? 51 8B 95 ? ? ? ? 52 8B 45 ?)
+label(_MachNoDelay)
+registersymbol(_MachNoDelay)
+MachNoDelay:
+_MachNoDelay:
+db EB
+
+[disable]
+_MachNoDelay:
+db 75
+unregistersymbol(_MachNoDelay)
