@@ -1,0 +1,23 @@
+[ENABLE]
+label(U_A)
+registersymbol(U_A)
+aobscan(UA,7E ? 83 ? ? 7D ? 8B ? ? 2B ? 3D ? ? ? ? 7E ? 3D ? ? ? ? 7D ?)
+
+
+
+
+UA:
+U_A:
+db EB
+
+
+
+
+[DISABLE]
+
+
+U_A:
+db 7E
+
+
+unregistersymbol(U_A)
