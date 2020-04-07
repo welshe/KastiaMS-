@@ -1,0 +1,24 @@
+[enable]
+aobscan(FMA,75 1C 81 BC ? ? ? ? ? ? ? ? ? 0F 85 ? ? ? ? 83 7C ? ? ? 0F 85)
+aobscan(N_LD,74 14 8B 11 8B 42 ? 53 53 53 53 53 53 53 53 68 EA ? ? ? FF D0 39 9E)
+label(FMA1)
+label(N_LD1)
+registersymbol(FMA1)
+registersymbol(N_LD1)
+FMA:
+FMA1:
+db 73
+
+N_LD:
+N_LD1:
+db EB
+
+[disable]
+FMA1:
+db 75
+
+N_LD1:
+db 74
+
+unregistersymbol(FMA1)
+unregistersymbol(N_LD1)
