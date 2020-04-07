@@ -1,0 +1,7 @@
+[ENABLE]
+00BA9FF0: // Familiar_TryDoingAttack
+db 33 C0 C3
+
+[DISABLE]
+00BA9FF0: // 83 ? ? 56 8B F1 83 BE ? ? ? ? 00 0F 84 ? ? ? ? 8B 86
+db 83 EC 68
