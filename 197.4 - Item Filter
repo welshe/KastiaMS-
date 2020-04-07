@@ -1,0 +1,28 @@
+[ENABLE]
+label(H_1)
+registersymbol(H_1)
+aobscan(H1,8B ? 89 ? ? E8 ? ? ? ? 8B ? 89 ? ? E8 ? ? ? ? 0F ? ? 89 ? ? 8B ? E8 ? ? ? ? 0F BF ? 8B ? 89 ? ? E8 ? ? ? ? 98 8B ?)
+
+alloc(ItemFilter,256)
+alloc(ItemList,2048)
+alloc(Mesos,4)
+alloc(Mode,4)
+label(Return)
+label(End)
+label(FilterMesos)
+label(RejectOrAccept)
+label(AcceptFilter)
+label(RejectFilter)
+label(Ignore)
+
+Mesos:
+dd #%arg1 // Minimum meso
+
+Mode:
+dd #%arg2 // 0 = Accept, 1 = reject
+
+ItemList:
+%arg3
+
+
+dd 00 // End of list
