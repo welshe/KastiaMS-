@@ -1,0 +1,26 @@
+[enable]
+alloc(Aggro,128)
+label(return)
+
+Aggro:
+mov eax,[029D70D0] // CUserLocal: 8B 3D ? ? ? ? 8B 40
+lea eax,[eax+04]
+mov [ecx+438+08],eax // Aggro Offset: 83 ? ? ? ? ? ? 0F 85 ? ? ? ? 8B ? ? 8B ? ? 8D ? ? FF D0 [Offset+0x08]
+
+push ebp
+mov ebp,esp
+and esp,-40
+jmp return
+
+01E01D10: // CVecCtrlMob::WorkUpdateActive
+jmp Aggro
+nop
+return:
+
+[disable]
+01E01D10: // 55 8B EC 83 E4 ? 6A ? 68 ? ? ? ? 64 A1 ? ? ? ? 50 83 EC ? 53 56 57 A1 ? ? ? ? 33 C4 50 8D 44 24 ? 64 A3 ? ? ? ? 8B F1 8B 4D ? 8B 06
+push ebp
+mov ebp,esp
+and esp,-40
+
+dealloc(Aggro)
