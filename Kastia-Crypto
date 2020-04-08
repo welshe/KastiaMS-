@@ -1,0 +1,39 @@
+// Token: 0x060006F2 RID: 1778 RVA: 0x00016950 File Offset: 0x00014B50
+		internal static void MapAlgorithmIdToMagic(string algorithm, out global::System.Security.Cryptography.BCryptNative.KeyBlobMagicNumber algorithmMagic, out int keySize)
+		{
+			if (algorithm == "ECDH_P256")
+			{
+				algorithmMagic = global::System.Security.Cryptography.BCryptNative.KeyBlobMagicNumber.ECDHPublicP256;
+				keySize = 256;
+				return;
+			}
+			if (algorithm == "ECDH_P384")
+			{
+				algorithmMagic = global::System.Security.Cryptography.BCryptNative.KeyBlobMagicNumber.ECDHPublicP384;
+				keySize = 384;
+				return;
+			}
+			if (algorithm == "ECDH_P521")
+			{
+				algorithmMagic = global::System.Security.Cryptography.BCryptNative.KeyBlobMagicNumber.ECDHPublicP521;
+				keySize = 521;
+				return;
+			}
+			if (algorithm == "ECDSA_P256")
+			{
+				algorithmMagic = global::System.Security.Cryptography.BCryptNative.KeyBlobMagicNumber.ECDsaPublicP256;
+				keySize = 256;
+				return;
+			}
+			if (algorithm == "ECDSA_P384")
+			{
+				algorithmMagic = global::System.Security.Cryptography.BCryptNative.KeyBlobMagicNumber.ECDsaPublicP384;
+				keySize = 384;
+				return;
+			}
+			if (!(algorithm == "ECDSA_P521"))
+			{
+				throw new global::System.ArgumentException(global::System.SR.GetString("Cryptography_UnknownEllipticCurveAlgorithm"));
+			}
+			algorithmMagic = global::System.Security.Cryptography.BCryptNative.KeyBlobMagicNumber.ECDsaPublicP521;
+			keySize = 521;
